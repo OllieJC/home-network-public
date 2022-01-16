@@ -13,7 +13,7 @@ fi
 
 apt update
 
-apt install shellcheck
+apt install shellcheck git wget
 
 # Finish
 echo "Finished."
