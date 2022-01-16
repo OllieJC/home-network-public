@@ -39,6 +39,9 @@ checkAddGroup () {
 checkAddGroup "adm"
 checkAddGroup "sudo"
 
+echo "ollie ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/005_ollie_nwpd"
+service ssh restart
+
 # SSH keys
 
 checkAddKeys () {
