@@ -56,7 +56,7 @@ checkAddKeys () {
   if [ -d "$SSHDIR" ]; then
     echo "$SSHDIR already exists."
   else
-    su "$SUDO_USER" -c "mkdir '$SSHDIR'"
+    su "$NEW_USER" -c "mkdir '$SSHDIR'"
   fi
 
   if grep -q "$KEYCONTENT" "${NEW_USERS_HOME}.ssh/authorized_keys"; then
