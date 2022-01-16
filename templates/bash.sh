@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # check if running as root (sudo)
-if [ "$EUID" -ne 0 ]
-  then echo "Run as root"
-  exit
-fi
+if [ "$EUID" -ne 0 ]; then echo "Run as root" && exit 1; fi
+
+# check if *not* running as root
+if [ "$EUID" -eq 0 ]; then echo "Do not run as root" && exit 1; fi
 
 CWD=$(pwd)
 

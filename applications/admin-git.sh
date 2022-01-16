@@ -2,6 +2,8 @@
 
 CWD=$(pwd)
 
+if [ "$EUID" -eq 0 ]; then echo "Do not run as root" && exit 1; fi
+
 GPK="$HOME/.ssh/id_ed25519.github"
 if [ -f "$GPK" ]; then
   echo "GitHub private key exists, continuing..."
