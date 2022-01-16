@@ -22,6 +22,9 @@ else
   exit 1
 fi
 
+su "$SUDO_USER" -c 'git config --global user.email "github@olliejc.uk"'
+su "$SUDO_USER" -c 'git config --global user.name "OllieJC"'
+
 HNPD="/home/$SUDO_USER/github/home-network-public"
 if test -d "$HNPD"; then
   cd "$HNPD" || exit 1
