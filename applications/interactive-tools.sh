@@ -2,6 +2,7 @@
 
 if [ "$EUID" -ne 0 ]; then echo "Run as root" && exit 1; fi
 
+if [[ "$HOME" =~ [^\/]$ ]]; then HOME="${HOME}/"; fi
 CWD=$(pwd)
 
 if command -v "apt" > /dev/null; then
@@ -13,7 +14,7 @@ fi
 
 apt update
 
-apt install shellcheck git wget
+apt install -y shellcheck git wget
 
 # Finish
 echo "Finished."

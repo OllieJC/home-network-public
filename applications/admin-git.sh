@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+if [ "$EUID" -eq 0 ]; then echo "Do not run as root" && exit 1; fi
+
+if [[ "$HOME" =~ [^\/]$ ]]; then HOME="${HOME}/"; fi
 CWD=$(pwd)
 
-if [ "$EUID" -eq 0 ]; then echo "Do not run as root" && exit 1; fi
 
 GPK="${HOME}.ssh/id_ed25519.github"
 if [ -f "$GPK" ]; then
@@ -26,11 +28,11 @@ ssh-keyscan -t rsa github.com >> "${HOME}.ssh/known_hosts"
 git config --global user.email "github@olliejc.uk"
 git config --global user.name "OllieJC"
 
-echo """Host github.com
+echo "Host github.com
     PreferredAuthentications publickey
     Hostname github.com
     IdentityFile $GPK
-    IdentitiesOnly yes""" > "${HOME}.ssh/config"
+    IdentitiesOnly yes" > "${HOME}.ssh/config"
 
 cd "$GHNP" || exit 1
 git remote set-url origin git@github.com:OllieJC/home-network-public.git

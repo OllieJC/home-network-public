@@ -2,6 +2,7 @@
 
 if [ "$EUID" -ne 0 ]; then echo "Run as root" && exit 1; fi
 
+if [[ "$HOME" =~ [^\/]$ ]]; then HOME="${HOME}/"; fi
 CWD=$(pwd)
 
 if command -v "apt" > /dev/null; then
@@ -12,7 +13,7 @@ if command -v "apt" > /dev/null; then
   else
     echo "Installing git..."
     apt update
-    apt install git
+    apt install -y git
   fi
 else
   echo "No apt, quiting."
