@@ -38,6 +38,17 @@ cd "$GHNP" || exit 1
 git remote set-url origin git@github.com:OllieJC/home-network-public.git
 git pull
 
+GHN="${HOME}github/home-network"
+if [ -d "$GHN" ]; then
+  echo "GitHub repo 'home-network' exists, continuing..."
+  cd "$GHN" || exit 1
+  git pull
+else
+  echo "GitHub repo '~/github/home-network' doesn't exist, cloning"
+  cd "${HOME}github"
+  git clone git@github.com:OllieJC/home-network.git
+fi
+
 # Finish
 echo "Finished."
 cd "$CWD" || exit 1
