@@ -12,6 +12,10 @@ LAST_ERROR_STATE=$(if [[ -f "$LES_FILE" ]]; then cat "$LES_FILE"; else echo 0; f
 
 STATUS=$(zpool status)
 
+if [ ${#STATUS} -le 1 ]; then
+  STATUS="Empty - maybe the hard drives aren't mounted?"
+fi
+
 ## Testing:
 #read -r -d '' STATUS << EOM
 #pool: hdd_data
