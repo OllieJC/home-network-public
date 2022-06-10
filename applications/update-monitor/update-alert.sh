@@ -6,6 +6,8 @@ set -e
 # SLACK_CHANNEL
 # SLACK_USERNAME
 
+sudo apt update
+
 UPGRADES=$(apt list --upgradable | grep "upgradable")
 
 if echo "$UPGRADES" | grep -qPo "upgradable"; then
